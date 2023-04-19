@@ -7,19 +7,35 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
-from rest_framework.permissions import (AllowAny, IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+from rest_framework.permissions import (
+    AllowAny,
+    IsAuthenticated,
+    IsAuthenticatedOrReadOnly
+)
 from rest_framework.response import Response
 
-from ..recipes.models import (Favorite, Ingredient, Recipe, RecipeIngredient,
-                              ShoppingList, Tag)
-from ..users.models import Follow
-from .filters import IngredientFilter, RecipeFilter
-from .serializers import (ChangePasswordSerializer, FollowSerializer,
-                          IngredientSerializer, RecipeFollowSerializer,
-                          RecipeGetSerializer, RecipesSerializer,
-                          TagSerializer, UserLoginSerializer, UserSerializer)
-from .utils import delete_obj, post_obj
+from recipes.models import (
+    Favorite,
+    Ingredient,
+    Recipe,
+    RecipeIngredient,
+    ShoppingList,
+    Tag
+)
+from users.models import Follow
+from api.filters import IngredientFilter, RecipeFilter
+from api.serializers import (
+    ChangePasswordSerializer,
+    FollowSerializer,
+    IngredientSerializer,
+    RecipeFollowSerializer,
+    RecipeGetSerializer,
+    RecipesSerializer,
+    TagSerializer,
+    UserLoginSerializer,
+    UserSerializer
+)
+from api.utils import delete_obj, post_obj
 
 User = get_user_model()
 
