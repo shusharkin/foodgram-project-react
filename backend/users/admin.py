@@ -1,14 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-from users.models import Follow
+from .models import Follow
 
-User = get_user_model()
+UserModel = get_user_model()
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    # Настройка отображения пользователей
+@admin.register(UserModel)
+class UserModelAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'username',
@@ -25,7 +24,6 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Follow)
 class FollowAdmin(admin.ModelAdmin):
-    # Настройка отображения подписок
     list_display = (
         'user',
         'author'

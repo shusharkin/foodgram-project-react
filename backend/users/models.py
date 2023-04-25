@@ -1,41 +1,37 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from django.db import models
 
 
-class UserFoodgram(AbstractUser):
-    """Описывает кастомную модель пользователя"""
-
+class UserModel(AbstractUser):
     username = models.CharField(
-        'username',
         max_length=150,
+        verbose_name='Имя пользователя',
         unique=True,
-        help_text='Не более 150 символов. Только буквы, цифры и @/./+/-/_.',
-        error_messages={
-            'unique': "Пользователь с таким именем уже существует.",
-        },
-    )
-
-    password = models.CharField(
-        'password',
-        max_length=150,
+        validators=[
+            RegexValidator(
+            regex=r'^[\w.@+-]+$',
+            message='Имя пользователя содержит недопустимый символ'
+            )
+        ]
     )
 
     email = models.EmailField(
-        'email address',
-        blank=False,
-        unique=True,
+        max_length=254,
+        verbose_name='Электронная почта',
+        unique=True
     )
 
     first_name = models.CharField(
-        'first name',
         max_length=150,
-        blank=False,
+        verbose_name='Имя',
+        blank=True
     )
 
     last_name = models.CharField(
-        'last name',
         max_length=150,
-        blank=False,
+        verbose_name='Фамилия',
+        blank=True
     )
 
     class Meta:
@@ -44,29 +40,27 @@ class UserFoodgram(AbstractUser):
 
 
 class Follow(models.Model):
-    """Описывает модель подписок на пользователей"""
-
     user = models.ForeignKey(
-        UserFoodgram,
+        UserModel,
         on_delete=models.CASCADE,
         related_name='follower',
         verbose_name='Подписчик'
     )
+
     author = models.ForeignKey(
-        UserFoodgram,
+        UserModel,
         on_delete=models.CASCADE,
         related_name='following',
         verbose_name='Автор'
     )
 
     class Meta:
-        verbose_name = 'Избранное'
-        verbose_name_plural = 'Избранные'
-        # Запрет подписки самого на себя
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
         constraints = [
             models.UniqueConstraint(
                 fields=('user', 'author'),
-                name='unique_followers'
+                name='unique_follow'
             )
         ]
 
