@@ -24,8 +24,8 @@ from recipes.models import (
     ShoppingCart,
     TagsModel
 )
-from .filters import IngredientFilter, RecipeFilter
-from .serializers import (
+from api.filters import IngredientFilter, RecipeFilter
+from api.serializers import (
     ChangePasswordSerializer,
     FollowSerializer,
     IngredientsSerializer,
@@ -36,7 +36,7 @@ from .serializers import (
     UserLoginSerializer,
     UserSerializer
 )
-from .utils import delete_obj, post_obj
+from api.utils import delete_obj, post_obj
 
 UserModel = get_user_model()
 
