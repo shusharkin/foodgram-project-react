@@ -40,7 +40,8 @@ python manage.py loaddata dump.json
 Проект сделан на Django и DRF. Django-проект работает на веб-сервере nginx через WSGI-сервер Gunicorn. База данных - PostgreSQL.
 Адрес проекта http://51.250.21.15 
 Суперюзер
-    login: test@test.test
+    login: admin
+    e-mail: test@test.test
     pass: admin
 
 ### Об авторе:
