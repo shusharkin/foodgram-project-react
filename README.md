@@ -32,17 +32,19 @@ docker-compose down -v
 ### Описание команды для заполнения базы данными:
 
 ```
-python manage.py loaddata dump.json
+python manage.py csv_import
 ```
 
 ### Технологии:
 
-Проект сделан на Django и DRF. Django-проект работает на веб-сервере nginx через WSGI-сервер Gunicorn. База данных - PostgreSQL.
-Адрес проекта http://51.250.21.15 
-Суперюзер
-    login: admin
-    e-mail: test@test.test
-    pass: admin
+Проект сделан на Django и DRF. Django-проект работает на веб-сервере nginx через WSGI-сервер Gunicorn. База данных - PostgreSQL.  
+
+Адрес проекта http://51.250.21.15/  
+
+Суперюзер:  
+login: admin  
+pass: admin  
+e-mail: test@test.test  
 
 ### Об авторе:
 
