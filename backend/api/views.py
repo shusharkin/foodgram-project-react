@@ -15,6 +15,7 @@ from rest_framework.permissions import (
 )
 from rest_framework.response import Response
 
+from api.paginators import PageLimitPagination
 from users.models import Follow
 from recipes.models import (
     Favorite,
@@ -199,6 +200,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     filterset_class = RecipeFilter
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = RecipesModel.objects.all()
+    pagination_class = PageLimitPagination
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -249,7 +251,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
             RecipeIngredient.objects
             .filter(recipe__cart__user=request.user)
             .values('ingredient')
-            .annotate(total_amount=Sum('amount'))
+            .annotate(total_amount=Sum(int('amount')))
             .values_list(
                 'ingredient__name',
                 'total_amount',
