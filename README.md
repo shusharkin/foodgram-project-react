@@ -39,8 +39,6 @@ python manage.py csv_import
 
 Проект сделан на Django и DRF. Django-проект работает на веб-сервере nginx через WSGI-сервер Gunicorn. База данных - PostgreSQL.  
 
-Адрес проекта http://51.250.21.15/  
-
 Суперюзер:  
 login: admin  
 pass: admin  
